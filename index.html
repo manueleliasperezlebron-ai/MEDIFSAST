@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="stylesheet" href="Medifast.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Médica - Consulta de Medicamentos</title>
+
+</head>
+
+<body>
+    <section>
+        <h1 class="fantasy-copperplate" style="color: cornflowerblue;"> Bienvenido a <span class="rellenar">MEDIFAST</span>, la aplicación web que te facilitara, brindara, y te ilustrara con la busqueda de tus medicamentos</h1>
+    </section>
+
+    <section class="Beneficios">
+        <h2 class="Titulo2">¿Por qué usar <span class="resaltar">MEDIFAST</span>?</h2>
+
+        <div class="contenedor-cards">
+            <div class="card">
+                <h3>Búsqueda Rápida</h3>
+                <p>Encuentra tus medicamentos fácilmente según tu ubicación.</p>
+            </div>
+
+            <div class="card">
+                <h3>Farmacias Cercanas</h3>
+                <p>Consulta qué farmacias tienen disponibilidad inmediata.</p>
+            </div>
+
+            <div class="card">
+                <h3>Precios Actualizados</h3>
+                <p>Compara los precios de medicamentos en tiempo real.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="Valores">
+        <h2 class="Titulo3">Mison, Vision <span class="vision"> y Valores </span></h2>
+
+        <div class="cuadro">
+            <div class="tarjetas">
+                <h3>Misión
+                    <p class="ms">Facilitar el acceso a información confiable y actualizada sobre precios y disponibilidad de medicamentos, a través de una aplicación móvil y web accesible, que contribuya al bienestar de las comunidades, optimizando tiempo, recursos
+                        y mejorando la calidad de vida de sus habitantes.
+                    </p>
+                </h3>
+            </div>
+            <div class="tarjetas">
+                <h3>Visión
+                    <p class="vs">Convertirse en la plataforma líder en consulta de medicamentos en comunidades rurales y urbanas, promoviendo la equidad en el acceso a la salud mediante el uso de la tecnología, y consolidándose como un referente en innovación social
+                        y sanitaria a nivel nacional e internacional.
+                    </p>
+                </h3>
+            </div>
+            <div class="tarjetas">
+                <h3>Valores
+                    <p class="texto1"> • Accesibilidad: Garantizar que la información sea clara, confiable y fácil de obtener para todos los usuarios
+                    </p>
+                    <p class="texto2"> • Solidaridad: Promover el bienestar colectivo y apoyar a comunidades con recursos limitados.
+                    </p>
+                    <p class="texto3"> • Innovación: Usar la tecnología como medio para resolver problemas sociales y de salud
+                    </p>
+                    <p class="texto4"> • Colaboración: Integrar a farmacias, centros médicos y usuarios en un sistema participativo.
+                    </p>
+                    <p class="texto5"> • Compromiso social: Trabajar por reducir las brechas de salud y digitales en comunidades vulnerables.</p>
+
+                </h3>
+            </div>
+        </div>
+
+    </section>
+
+    <h1 class="Titulo">Consulta de Medicamentos</h1>
+
+    <!-- Lista desplegable (Pueblos) -->
+    <div class="Menu">
+        <button class="boton-vaciar" onclick="vaciarCampos()">Vaciar</button>
+        <label class="fantasy-copperplate">Seleccione su pueblo:</label><br>
+        <select id="pueblo">
+        <option value="">Seleccione un pueblo</option>
+        <option value="Elias Piña">Elias Piña</option>
+        <option value="Hermanas Mirabal">Hermanas Mirabal</option>
+        <option value="La Cienega">La Cienega</option>
+        <option value="Los Guandules">Los Guandules</option>
+        <option value="Guaricanos">Guaricanos</option>
+        <option value="Brisas del este">Brisas del Este</option>
+        <option value="Los Frailes">Los Frailes</option>
+        <option value="Los Mina">Los Mina</option>
+    </select>
+        <br><br>
+
+        <label class="fantasy-copperplate">Ingrese el nombre del medicamento:</label><br>
+        <div class="buscador-container">
+            <input type="text" id="medicamento" placeholder="Ej: Paracetamol" onkeyup="mostrarSugerencias()">
+            <div id="sugerencias"></div>
+        </div>
+        <br>
+
+        <button class="boton" onclick="buscarMedicamento()">Buscar</button><br><br>
+
+        <label class="fantasy-copperplate">Precio del medicamento:</label><br>
+        <textarea id="precio" rows="1" readonly></textarea><br><br>
+
+        <label class="fantasy-copperplate">Farmacia disponible:</label><br>
+        <textarea id="farmacia" rows="1" readonly></textarea><br><br>
+    </div>
+    <script>
+        const baseDatos = [{
+                pueblo: "Elias Piña",
+                farmacia: "Farmacia Quisqueya",
+                medicamentos: [{
+                    nombre: "Paracetamol",
+                    precio: "$100"
+                }, {
+                    nombre: "Ibuprofeno",
+                    precio: "$85"
+                }, {
+                    nombre: "Amoxicilina",
+                    precio: "$150"
+                }, {
+                    nombre: "Vitamina C",
+                    precio: "$60"
+                }, {
+                    nombre: "Diclofenac",
+                    precio: "$90"
+                }, {
+                    nombre: "Omeprazol",
+                    precio: "$70"
+                }, {
+                    nombre: "Metformina",
+                    precio: "$120"
+                }, {
+                    nombre: "Aspirina",
+                    precio: "$50"
+                }, {
+                    nombre: "Loratadina",
+                    precio: "$110"
+                }, {
+                    nombre: "Pantoprazol",
+                    precio: "$95"
+                }]
+            }, {
+                pueblo: "Hermanas Mirabal",
+                farmacia: "Farmacia La Botica Dominicana",
+                medicamentos: [{
+                    nombre: "Ibuprofeno",
+                    precio: "$25"
+                }, {
+                    nombre: "Jarabe para la tos",
+                    precio: "$90"
+                }, {
+                    nombre: "Paracetamol",
+                    precio: "$110"
+
+                }, {
+                    nombre: "Diclofenac",
+                    precio: "$100"
+
+                }, {
+                    nombre: "Prodom",
+                    precio: "$50"
+
+                }, {
+                    nombre: "Insulina",
+                    precio: "$1,000"
+
+                }, {
+                    nombre: "Jeringas",
+                    precio: "$10"
+
+                }, {
+                    nombre: "Naproxeno",
+                    precio: "$100"
+
+                }, {
+                    nombre: "Ponstan",
+                    precio: "$30"
+
+                }, {
+                    nombre: "Potasio",
+                    precio: "$150"
+
+                }]
+            },
+
+
+
+            {
+                pueblo: "La Cienega",
+                farmacia: "Farmacia Popular",
+                medicamentos: [{
+                    nombre: "Jarabe para la tos",
+                    precio: "$90"
+                }, {
+                    nombre: "Diclofenac",
+                    precio: "$100"
+                }, {
+                    nombre: "Amoxicilina",
+                    precio: "$45"
+
+                }, {
+                    nombre: "Termometro",
+                    precio: "$200"
+
+                }, {
+                    nombre: "Fosfo B 12",
+                    precio: "$150"
+
+                }, {
+                    nombre: "Calcio",
+                    precio: "$85"
+
+                }, {
+                    nombre: "Vitamina K",
+                    precio: "$25"
+
+                }, {
+                    nombre: "Omeprazol",
+                    precio: "$15"
+
+                }, {
+                    nombre: "Laxante",
+                    precio: "$40"
+
+                }, {
+                    nombre: "Alka seltzer",
+                    precio: "$35"
+
+                }]
+            },
+
+
+            {
+                pueblo: "Los Guandules",
+                farmacia: "Farmacia del pueblo",
+                medicamentos: [{
+                    nombre: "Jarabe para la tos",
+                    precio: "$90"
+                }, {
+                    nombre: "Diclofenac",
+                    precio: "$100"
+                }, {
+                    nombre: "Amoxicilina",
+                    precio: "$45"
+
+                }, {
+                    nombre: "Termometro",
+                    precio: "$200"
+
+                }, {
+                    nombre: "Peptobismol",
+                    precio: "$150"
+
+                }, {
+                    nombre: "Calcio",
+                    precio: "$85"
+
+                }, {
+                    nombre: "Vitamina K",
+                    precio: "$25"
+
+                }, {
+                    nombre: "Omeprazol",
+                    precio: "$15"
+
+                }, {
+                    nombre: "Laxante",
+                    precio: "$40"
+
+                }, {
+                    nombre: "Anti Alergico",
+                    precio: "$35"
+
+                }]
+            },
+
+            {
+                pueblo: "Guaricanos",
+                farmacia: "Farmacia (El valle)",
+                medicamentos: [{
+                    nombre: "Jarabe para la tos",
+                    precio: "$90"
+                }, {
+                    nombre: "Diclofenac",
+                    precio: "$100"
+                }, {
+                    nombre: "Tabcin",
+                    precio: "$45"
+
+                }, {
+                    nombre: "Gotas para la vista",
+                    precio: "$200"
+
+                }, {
+                    nombre: "Fosfo B 12",
+                    precio: "$150"
+
+                }, {
+                    nombre: "Nalixone",
+                    precio: "$85"
+
+                }, {
+                    nombre: "Vitamina K",
+                    precio: "$25"
+
+                }, {
+                    nombre: "Omeprazol",
+                    precio: "$15"
+
+                }, {
+                    nombre: "Laxante",
+                    precio: "$40"
+
+                }, {
+                    nombre: "Mictazol",
+                    precio: "$35"
+
+                }]
+            },
+
+            {
+                pueblo: "Brisas Del Este",
+                farmacia: "Farmacia Tuni",
+                medicamentos: [{
+                    nombre: "Jarabe para la tos",
+                    precio: "$90"
+                }, {
+                    nombre: "Evital",
+                    precio: "$100"
+                }, {
+                    nombre: "Ciruelax",
+                    precio: "$45"
+
+                }, {
+                    nombre: "Gotas para la vista",
+                    precio: "$200"
+
+                }, {
+                    nombre: "Fosfo B 12",
+                    precio: "$150"
+
+                }, {
+                    nombre: "Nalixone",
+                    precio: "$85"
+
+                }, {
+                    nombre: "Albendazol",
+                    precio: "$25"
+
+                }, {
+                    nombre: "Omeprazol",
+                    precio: "$15"
+
+                }, {
+                    nombre: "Laxante",
+                    precio: "$40"
+
+                }, {
+                    nombre: "Mictazol",
+                    precio: "$35"
+
+                }]
+            },
+
+
+            {
+                pueblo: "Los Frailes",
+                farmacia: "Farmacia Las Americas",
+                medicamentos: [{
+                    nombre: "Jarabe para la tos",
+                    precio: "$90"
+                }, {
+                    nombre: "Evital",
+                    precio: "$100"
+                }, {
+                    nombre: "Ciruelax",
+                    precio: "$45"
+
+                }, {
+                    nombre: "Gotas para la vista",
+                    precio: "$200"
+
+                }, {
+                    nombre: "Fosfo B 12",
+                    precio: "$150"
+
+                }, {
+                    nombre: "Nalixone",
+                    precio: "$85"
+
+                }, {
+                    nombre: "Albendazol",
+                    precio: "$25"
+
+                }, {
+                    nombre: "Omeprazol",
+                    precio: "$15"
+
+                }, {
+                    nombre: "Laxante",
+                    precio: "$40"
+
+                }, {
+                    nombre: "Mictazol",
+                    precio: "$35"
+
+                }]
+            },
+
+            {
+                pueblo: "Los Mina",
+                farmacia: "Farmacia tu opción",
+                medicamentos: [{
+                    nombre: "Jarabe para la tos",
+                    precio: "$90"
+                }, {
+                    nombre: "Evital",
+                    precio: "$100"
+                }, {
+                    nombre: "Vaporub",
+                    precio: "$45"
+
+                }, {
+                    nombre: "Gotas para la vista",
+                    precio: "$200"
+
+                }, {
+                    nombre: "Fosfo B 12",
+                    precio: "$150"
+
+                }, {
+                    nombre: "Nalixone",
+                    precio: "$85"
+
+                }, {
+                    nombre: "Biodramina",
+                    precio: "$25"
+
+                }, {
+                    nombre: "Omeprazol",
+                    precio: "$15"
+
+                }, {
+                    nombre: "Laxante",
+                    precio: "$40"
+
+                }, {
+                    nombre: "Mictazol",
+                    precio: "$35"
+
+                }]
+            }
+        ];
+
+        function buscarMedicamento() {
+            const pueblo = document.getElementById("pueblo").value;
+            const medicamento = document.getElementById("medicamento").value.trim().toLowerCase();
+
+            let encontrado = null;
+
+            baseDatos.forEach(farmacia => {
+                if (farmacia.pueblo === pueblo) {
+                    farmacia.medicamentos.forEach(med => {
+                        if (med.nombre.toLowerCase() === medicamento) {
+                            encontrado = {
+                                precio: med.precio,
+                                farmacia: farmacia.farmacia
+                            };
+                        }
+                    });
+                }
+            });
+
+            if (encontrado) {
+                document.getElementById("precio").value = encontrado.precio;
+                document.getElementById("farmacia").value = encontrado.farmacia;
+            } else {
+                document.getElementById("precio").value = "No disponible";
+                document.getElementById("farmacia").value = "No disponible";
+            }
+        }
+
+        function mostrarSugerencias() {
+            const input = document.getElementById("medicamento").value.toLowerCase();
+            const sugerenciasDiv = document.getElementById("sugerencias");
+            sugerenciasDiv.innerHTML = "";
+
+            if (input.length === 0) {
+                sugerenciasDiv.style.display = "none";
+                return;
+            }
+
+            let sugerencias = [];
+            baseDatos.forEach(farmacia => {
+                farmacia.medicamentos.forEach(med => {
+                    if (med.nombre.toLowerCase().startsWith(input) && !sugerencias.includes(med.nombre)) {
+                        sugerencias.push(med.nombre);
+                    }
+                });
+            });
+
+            if (sugerencias.length > 0) {
+                sugerenciasDiv.style.display = "block";
+                sugerencias.forEach(s => {
+                    const div = document.createElement("div");
+                    div.textContent = s;
+                    div.onclick = function() {
+                        document.getElementById("medicamento").value = s;
+                        sugerenciasDiv.style.display = "none";
+                    };
+                    sugerenciasDiv.appendChild(div);
+                });
+            } else {
+                sugerenciasDiv.style.display = "none";
+            }
+        }
+
+        function vaciarCampos() {
+            document.getElementById("pueblo").value = "";
+            document.getElementById("medicamento").value = "";
+            document.getElementById("precio").value = "";
+            document.getElementById("farmacia").value = "";
+        }
+    </script>
+</body>
+<footer>
+    <p>No Copyright -
+        <a class="Dueños">Manuel Elias Pérez Lebrón</a> </p>
+</footer>
+
+</html>
