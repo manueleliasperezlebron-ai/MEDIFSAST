@@ -2,563 +2,661 @@
 <html lang="es">
 
 <head>
-    <link rel="stylesheet" href="Medifast.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>App Médica - Consulta de Medicamentos</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Medifast — Consulta precios y disponibilidad de medicamentos en farmacias de tu comunidad en República Dominicana.">
+  <title>Medifast — Medicamentos en tu comunidad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Medifast.css">
 </head>
 
 <body>
-    <section>
-        <h1 class="fantasy-copperplate" style="color: cornflowerblue;"> Bienvenido a <span class="rellenar">MEDIFAST</span>, la aplicación web que te facilitara, brindara, y te ilustrara con la busqueda de tus medicamentos</h1>
-    </section>
 
-    <section class="Beneficios">
-        <h2 class="Titulo2">¿Por qué usar <span class="resaltar">MEDIFAST</span>?</h2>
-
-        <div class="contenedor-cards">
-            <div class="card">
-                <h3>Búsqueda Rápida</h3>
-                <p>Encuentra tus medicamentos fácilmente según tu ubicación.</p>
-            </div>
-
-            <div class="card">
-                <h3>Farmacias Cercanas</h3>
-                <p>Consulta qué farmacias tienen disponibilidad inmediata.</p>
-            </div>
-
-            <div class="card">
-                <h3>Precios Actualizados</h3>
-                <p>Compara los precios de medicamentos en tiempo real.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="Valores">
-        <h2 class="Titulo3">Misión, Visión <span class="vision"> y Valores </span></h2>
-
-        <div class="cuadro">
-            <div class="tarjetas">
-                <h3>Misión
-                    <p class="ms">Facilitar el acceso a información confiable y actualizada sobre precios y disponibilidad de medicamentos, a través de una aplicación móvil y web accesible, que contribuya al bienestar de las comunidades, optimizando tiempo, recursos
-                        y mejorando la calidad de vida de sus habitantes.
-                    </p>
-                </h3>
-            </div>
-            <div class="tarjetas">
-                <h3>Visión
-                    <p class="vs">Convertirse en la plataforma líder en consulta de medicamentos en comunidades rurales y urbanas, promoviendo la equidad en el acceso a la salud mediante el uso de la tecnología, y consolidándose como un referente en innovación social
-                        y sanitaria a nivel nacional e internacional.
-                    </p>
-                </h3>
-            </div>
-            <div class="tarjetas">
-                <h3>Valores
-                    <p class="texto1"> • Accesibilidad: Garantizar que la información sea clara, confiable y fácil de obtener para todos los usuarios
-                    </p>
-                    <p class="texto2"> • Solidaridad: Promover el bienestar colectivo y apoyar a comunidades con recursos limitados.
-                    </p>
-                    <p class="texto3"> • Innovación: Usar la tecnología como medio para resolver problemas sociales y de salud
-                    </p>
-                    <p class="texto4"> • Colaboración: Integrar a farmacias, centros médicos y usuarios en un sistema participativo.
-                    </p>
-                    <p class="texto5"> • Compromiso social: Trabajar por reducir las brechas de salud y digitales en comunidades vulnerables.</p>
-
-                </h3>
-            </div>
-        </div>
-
-    </section>
-
-    <h1 class="Titulo">Consulta de Medicamentos</h1>
-
-    <!-- Lista desplegable (Pueblos) -->
-    <div class="Menu">
-        <button class="boton-vaciar" onclick="vaciarCampos()">Vaciar</button>
-        <label class="fantasy-copperplate">Seleccione su pueblo:</label><br>
-        <select id="pueblo">
-        <option value="">Seleccione un pueblo</option>
-        <option value="Elias Piña">Elias Piña</option>
-        <option value="Hermanas Mirabal">Hermanas Mirabal</option>
-        <option value="La Cienega">La Cienega</option>
-        <option value="Los Guandules">Los Guandules</option>
-        <option value="Guaricanos">Guaricanos</option>
-        <option value="Brisas del este">Brisas del Este</option>
-        <option value="Los Frailes">Los Frailes</option>
-        <option value="Los Mina">Los Mina</option>
-    </select>
-        <br><br>
-
-        <label class="fantasy-copperplate">Ingrese el nombre del medicamento:</label><br>
-        <div class="buscador-container">
-            <input type="text" id="medicamento" placeholder="Ej: Paracetamol" onkeyup="mostrarSugerencias()">
-            <div id="sugerencias"></div>
-        </div>
-        <br>
-
-        <button class="boton" onclick="buscarMedicamento()">Buscar</button><br><br>
-
-        <label class="fantasy-copperplate">Precio del medicamento:</label><br>
-        <textarea id="precio" rows="1" readonly></textarea><br><br>
-
-        <label class="fantasy-copperplate">Farmacia disponible:</label><br>
-        <textarea id="farmacia" rows="1" readonly></textarea><br><br>
+  <!-- ── NAVBAR ─────────────────────────────────────────── -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="#inicio" class="nav-logo">
+        <span class="logo-icon">💊</span>
+        <span class="logo-text">Medi<strong>fast</strong></span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#beneficios">Beneficios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#buscador">Buscar</a>
+        <a href="#estadisticas">Estadísticas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <button class="nav-cta" onclick="document.getElementById('buscador').scrollIntoView({behavior:'smooth'})">
+        Buscar medicamento
+      </button>
+      <button class="hamburger" aria-label="Abrir menú" onclick="toggleMenu()">&#9776;</button>
     </div>
-    <script>
-        const baseDatos = [{
-                pueblo: "Elias Piña",
-                farmacia: "Farmacia Quisqueya",
-                medicamentos: [{
-                    nombre: "Paracetamol",
-                    precio: "$100"
-                }, {
-                    nombre: "Ibuprofeno",
-                    precio: "$85"
-                }, {
-                    nombre: "Amoxicilina",
-                    precio: "$150"
-                }, {
-                    nombre: "Vitamina C",
-                    precio: "$60"
-                }, {
-                    nombre: "Diclofenac",
-                    precio: "$90"
-                }, {
-                    nombre: "Omeprazol",
-                    precio: "$70"
-                }, {
-                    nombre: "Metformina",
-                    precio: "$120"
-                }, {
-                    nombre: "Aspirina",
-                    precio: "$50"
-                }, {
-                    nombre: "Loratadina",
-                    precio: "$110"
-                }, {
-                    nombre: "Pantoprazol",
-                    precio: "$95"
-
-                }, {
-                    nombre: "Acetaminofen",
-                    precio: "$10"
-                }]
-            }, {
-                pueblo: "Hermanas Mirabal",
-                farmacia: "Farmacia La Botica Dominicana",
-                medicamentos: [{
-                    nombre: "Ibuprofeno",
-                    precio: "$25"
-                }, {
-                    nombre: "Jarabe para la tos",
-                    precio: "$90"
-                }, {
-                    nombre: "Paracetamol",
-                    precio: "$110"
-
-                }, {
-                    nombre: "Diclofenac",
-                    precio: "$100"
-
-                }, {
-                    nombre: "Prodom",
-                    precio: "$50"
-
-                }, {
-                    nombre: "Insulina",
-                    precio: "$1,000"
-
-                }, {
-                    nombre: "Jeringas",
-                    precio: "$10"
-
-                }, {
-                    nombre: "Naproxeno",
-                    precio: "$100"
-
-                }, {
-                    nombre: "Ponstan",
-                    precio: "$30"
-
-                }, {
-                    nombre: "Potasio",
-                    precio: "$150"
-
-                }, {
-                    nombre: "Acetaminofen",
-                    precio: "$10"
-
-                }]
-            },
-
-
-
-            {
-                pueblo: "La Cienega",
-                farmacia: "Farmacia Popular",
-                medicamentos: [{
-                    nombre: "Jarabe para la tos",
-                    precio: "$90"
-                }, {
-                    nombre: "Diclofenac",
-                    precio: "$100"
-                }, {
-                    nombre: "Amoxicilina",
-                    precio: "$45"
-
-                }, {
-                    nombre: "Termometro",
-                    precio: "$200"
-
-                }, {
-                    nombre: "Fosfo B 12",
-                    precio: "$150"
-
-                }, {
-                    nombre: "Calcio",
-                    precio: "$85"
-
-                }, {
-                    nombre: "Vitamina K",
-                    precio: "$25"
-
-                }, {
-                    nombre: "Omeprazol",
-                    precio: "$15"
-
-                }, {
-                    nombre: "Laxante",
-                    precio: "$40"
-
-                }, {
-                    nombre: "Alka seltzer",
-                    precio: "$35"
-
-                }, {
-                    nombre: "Acetaminofen",
-                    precio: "$10"
-
-                }]
-            },
-
-
-            {
-                pueblo: "Los Guandules",
-                farmacia: "Farmacia del pueblo",
-                medicamentos: [{
-                    nombre: "Jarabe para la tos",
-                    precio: "$90"
-                }, {
-                    nombre: "Diclofenac",
-                    precio: "$100"
-                }, {
-                    nombre: "Amoxicilina",
-                    precio: "$45"
-
-                }, {
-                    nombre: "Termometro",
-                    precio: "$200"
-
-                }, {
-                    nombre: "Peptobismol",
-                    precio: "$150"
-
-                }, {
-                    nombre: "Calcio",
-                    precio: "$85"
-
-                }, {
-                    nombre: "Vitamina K",
-                    precio: "$25"
-
-                }, {
-                    nombre: "Omeprazol",
-                    precio: "$15"
-
-                }, {
-                    nombre: "Laxante",
-                    precio: "$40"
-
-                }, {
-                    nombre: "Anti Alergico",
-                    precio: "$35"
-
-                }, {
-                    nombre: "Acetaminofen",
-                    precio: "$10"
-
-                }]
-            },
-
-            {
-                pueblo: "Guaricanos",
-                farmacia: "Farmacia (El valle)",
-                medicamentos: [{
-                    nombre: "Jarabe para la tos",
-                    precio: "$90"
-                }, {
-                    nombre: "Diclofenac",
-                    precio: "$100"
-                }, {
-                    nombre: "Tabcin",
-                    precio: "$45"
-
-                }, {
-                    nombre: "Gotas para la vista",
-                    precio: "$200"
-
-                }, {
-                    nombre: "Fosfo B 12",
-                    precio: "$150"
-
-                }, {
-                    nombre: "Nalixone",
-                    precio: "$85"
-
-                }, {
-                    nombre: "Vitamina K",
-                    precio: "$25"
-
-                }, {
-                    nombre: "Omeprazol",
-                    precio: "$15"
-
-                }, {
-                    nombre: "Laxante",
-                    precio: "$40"
-
-                }, {
-                    nombre: "Mictazol",
-                    precio: "$35"
-
-                }, {
-                    nombre: "Acetaminofen",
-                    precio: "$10"
-
-                }]
-            },
-
-            {
-                pueblo: "Brisas Del Este",
-                farmacia: "Farmacia Tuni",
-                medicamentos: [{
-                    nombre: "Jarabe para la tos",
-                    precio: "$90"
-                }, {
-                    nombre: "Evital",
-                    precio: "$100"
-                }, {
-                    nombre: "Ciruelax",
-                    precio: "$45"
-
-                }, {
-                    nombre: "Gotas para la vista",
-                    precio: "$200"
-
-                }, {
-                    nombre: "Fosfo B 12",
-                    precio: "$150"
-
-                }, {
-                    nombre: "Nalixone",
-                    precio: "$85"
-
-                }, {
-                    nombre: "Albendazol",
-                    precio: "$25"
-
-                }, {
-                    nombre: "Omeprazol",
-                    precio: "$15"
-
-                }, {
-                    nombre: "Laxante",
-                    precio: "$40"
-
-                }, {
-                    nombre: "Mictazol",
-                    precio: "$35"
-
-                }, {
-                    nombre: "Acetaminofen",
-                    precio: "$10"
-
-                }]
-            },
-
-
-            {
-                pueblo: "Los Frailes",
-                farmacia: "Farmacia Las Americas",
-                medicamentos: [{
-                    nombre: "Jarabe para la tos",
-                    precio: "$90"
-                }, {
-                    nombre: "Evital",
-                    precio: "$100"
-                }, {
-                    nombre: "Ciruelax",
-                    precio: "$45"
-
-                }, {
-                    nombre: "Gotas para la vista",
-                    precio: "$200"
-
-                }, {
-                    nombre: "Fosfo B 12",
-                    precio: "$150"
-
-                }, {
-                    nombre: "Nalixone",
-                    precio: "$85"
-
-                }, {
-                    nombre: "Albendazol",
-                    precio: "$25"
-
-                }, {
-                    nombre: "Omeprazol",
-                    precio: "$15"
-
-                }, {
-                    nombre: "Laxante",
-                    precio: "$40"
-
-                }, {
-                    nombre: "Mictazol",
-                    precio: "$35"
-
-                }, {
-                    nombre: "Acetaminofen",
-                    precio: "$10"
-
-                }]
-            },
-
-            {
-                pueblo: "Los Mina",
-                farmacia: "Farmacia tu opción",
-                medicamentos: [{
-                    nombre: "Jarabe para la tos",
-                    precio: "$90"
-                }, {
-                    nombre: "Evital",
-                    precio: "$100"
-                }, {
-                    nombre: "Vaporub",
-                    precio: "$45"
-
-                }, {
-                    nombre: "Gotas para la vista",
-                    precio: "$200"
-
-                }, {
-                    nombre: "Fosfo B 12",
-                    precio: "$150"
-
-                }, {
-                    nombre: "Nalixone",
-                    precio: "$85"
-
-                }, {
-                    nombre: "Biodramina",
-                    precio: "$25"
-
-                }, {
-                    nombre: "Omeprazol",
-                    precio: "$15"
-
-                }, {
-                    nombre: "Laxante",
-                    precio: "$40"
-
-                }, {
-                    nombre: "Mictazol",
-                    precio: "$35"
-
-                }, {
-                    nombre: "Acetaminofen",
-                    precio: "$10"
-
-                }]
-            }
-        ];
-
-        function buscarMedicamento() {
-            const pueblo = document.getElementById("pueblo").value;
-            const medicamento = document.getElementById("medicamento").value.trim().toLowerCase();
-
-            let encontrado = null;
-
-            baseDatos.forEach(farmacia => {
-                if (farmacia.pueblo === pueblo) {
-                    farmacia.medicamentos.forEach(med => {
-                        if (med.nombre.toLowerCase() === medicamento) {
-                            encontrado = {
-                                precio: med.precio,
-                                farmacia: farmacia.farmacia
-                            };
-                        }
-                    });
-                }
-            });
-
-            if (encontrado) {
-                document.getElementById("precio").value = encontrado.precio;
-                document.getElementById("farmacia").value = encontrado.farmacia;
-            } else {
-                document.getElementById("precio").value = "No disponible";
-                document.getElementById("farmacia").value = "No disponible";
-            }
+  </header>
+
+  <!-- ── HERO ───────────────────────────────────────────── -->
+  <section id="inicio" class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">🇩🇴 República Dominicana</span>
+      <h1 class="hero-titulo">
+        Encuentra tus medicamentos<br>
+        <span class="hero-acento">cerca de ti, al mejor precio</span>
+      </h1>
+      <p class="hero-sub">
+        Consulta disponibilidad y precios en farmacias de tu comunidad.
+        Sin filas. Sin sorpresas.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="document.getElementById('buscador').scrollIntoView({behavior:'smooth'})">
+          Consultar ahora
+        </button>
+        <button class="btn-ghost" onclick="document.getElementById('beneficios').scrollIntoView({behavior:'smooth'})">
+          Conocer más
+        </button>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-card-float">
+        <div class="hcf-icon">✔</div>
+        <div>
+          <div class="hcf-label">Paracetamol encontrado</div>
+          <div class="hcf-sub">Farmacia Quisqueya · $100</div>
+        </div>
+      </div>
+      <div class="hero-pill-grid">
+        <div class="pill-item">💊 Ibuprofeno</div>
+        <div class="pill-item">💉 Insulina</div>
+        <div class="pill-item">🌿 Vitamina C</div>
+        <div class="pill-item">🩺 Amoxicilina</div>
+        <div class="pill-item">🔬 Omeprazol</div>
+        <div class="pill-item">💊 Aspirina</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ESTADÍSTICAS ───────────────────────────────────── -->
+  <section id="estadisticas" class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">8</span>
+      <span class="stat-lbl">Comunidades</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">80+</span>
+      <span class="stat-lbl">Medicamentos</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">8</span>
+      <span class="stat-lbl">Farmacias</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">100%</span>
+      <span class="stat-lbl">Gratuito</span>
+    </div>
+  </section>
+
+  <!-- ── BENEFICIOS ─────────────────────────────────────── -->
+  <section id="beneficios" class="seccion">
+    <div class="seccion-header">
+      <span class="eyebrow">¿Por qué Medifast?</span>
+      <h2>Tu salud, más accesible</h2>
+      <p class="seccion-sub">Diseñado para comunidades dominicanas con el objetivo de reducir tiempo y costo al buscar medicamentos.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="feature-card">
+        <div class="fc-icon" style="background:#e8f4ff;">🔍</div>
+        <h3>Búsqueda rápida</h3>
+        <p>Autocomplete en tiempo real que te sugiere medicamentos mientras escribes. Sin esperas.</p>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon" style="background:#e8fff0;">📍</div>
+        <h3>Farmacias cercanas</h3>
+        <p>Selecciona tu pueblo y ve exactamente cuál farmacia tiene el medicamento disponible hoy.</p>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon" style="background:#fff8e8;">💰</div>
+        <h3>Comparación de precios</h3>
+        <p>Ve el precio del mismo medicamento en todas las comunidades para elegir la mejor opción.</p>
+      </div>
+      <div class="feature-card">
+        <div class="fc-icon" style="background:#f3e8ff;">📱</div>
+        <h3>Acceso universal</h3>
+        <p>Funciona en cualquier dispositivo, incluso en conexiones lentas. Diseñado para todos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BUSCADOR PRINCIPAL ─────────────────────────────── -->
+  <section id="buscador" class="seccion buscador-seccion">
+    <div class="seccion-header">
+      <span class="eyebrow">Consulta en línea</span>
+      <h2>Busca tu medicamento</h2>
+    </div>
+
+    <div class="buscador-card">
+      <div class="buscador-form">
+
+        <!-- Pueblo -->
+        <div class="campo-grupo">
+          <label for="pueblo" class="campo-label">
+            <span class="campo-icono">📍</span> Selecciona tu comunidad
+          </label>
+          <select id="pueblo" class="campo-select">
+            <option value="">Elige un pueblo o sector...</option>
+            <option value="Elias Piña">Elias Piña</option>
+            <option value="Hermanas Mirabal">Hermanas Mirabal</option>
+            <option value="La Cienega">La Cienega</option>
+            <option value="Los Guandules">Los Guandules</option>
+            <option value="Guaricanos">Guaricanos</option>
+            <option value="Brisas Del Este">Brisas del Este</option>
+            <option value="Los Frailes">Los Frailes</option>
+            <option value="Los Mina">Los Mina</option>
+          </select>
+        </div>
+
+        <!-- Medicamento -->
+        <div class="campo-grupo">
+          <label for="medicamento" class="campo-label">
+            <span class="campo-icono">💊</span> Nombre del medicamento
+          </label>
+          <div class="autocomplete-wrapper">
+            <input
+              type="text"
+              id="medicamento"
+              class="campo-input"
+              placeholder="Ej: Paracetamol, Ibuprofeno..."
+              autocomplete="off"
+              onkeyup="mostrarSugerencias()"
+              onkeydown="manejarTecla(event)"
+              oninput="mostrarSugerencias()"
+            >
+            <div id="sugerencias" class="sugerencias-dropdown" role="listbox" aria-label="Sugerencias de medicamentos"></div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="buscador-acciones">
+          <button class="btn-primary btn-buscar" onclick="buscarMedicamento()">
+            🔍 Buscar
+          </button>
+          <button class="btn-secondary btn-comparar" onclick="compararPrecios()">
+            📊 Comparar en todos los pueblos
+          </button>
+          <button class="btn-ghost btn-limpiar" onclick="vaciarCampos()">
+            ✕ Limpiar
+          </button>
+        </div>
+      </div>
+
+      <!-- Resultado principal -->
+      <div id="resultado-principal" class="resultado-box" style="display:none;">
+        <h3 class="resultado-titulo">Resultado encontrado</h3>
+        <div class="resultado-grid">
+          <div class="resultado-item">
+            <span class="ri-label">Medicamento</span>
+            <span class="ri-valor" id="res-nombre">—</span>
+          </div>
+          <div class="resultado-item">
+            <span class="ri-label">Farmacia</span>
+            <span class="ri-valor" id="res-farmacia">—</span>
+          </div>
+          <div class="resultado-item resultado-precio">
+            <span class="ri-label">Precio</span>
+            <span class="ri-valor ri-precio" id="res-precio">—</span>
+          </div>
+          <div class="resultado-item">
+            <span class="ri-label">Comunidad</span>
+            <span class="ri-valor" id="res-pueblo">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- No encontrado -->
+      <div id="resultado-vacio" class="resultado-vacio" style="display:none;">
+        <div class="rv-icono">🔎</div>
+        <p class="rv-texto">Medicamento no disponible en esa comunidad. Prueba en otra o usa "Comparar".</p>
+      </div>
+
+      <!-- Tabla comparativa -->
+      <div id="tabla-comparacion" class="tabla-comparacion" style="display:none;">
+        <h3 class="tabla-titulo">
+          <span id="tabla-med-nombre">Medicamento</span> — precios por comunidad
+        </h3>
+        <div class="tabla-wrapper">
+          <table class="tabla-precios">
+            <thead>
+              <tr>
+                <th>Comunidad</th>
+                <th>Farmacia</th>
+                <th>Precio</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-body"></tbody>
+          </table>
+        </div>
+        <p class="tabla-nota">💡 El precio más bajo aparece resaltado en verde.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── MISIÓN, VISIÓN Y VALORES ───────────────────────── -->
+  <section id="nosotros" class="seccion seccion-oscura">
+    <div class="seccion-header">
+      <span class="eyebrow eyebrow-claro">Quiénes somos</span>
+      <h2>Misión, Visión y Valores</h2>
+      <p class="seccion-sub seccion-sub-claro">El propósito detrás de Medifast.</p>
+    </div>
+    <div class="mvv-grid">
+      <div class="mvv-card">
+        <div class="mvv-icono">🎯</div>
+        <h3>Misión</h3>
+        <p>Facilitar el acceso a información confiable y actualizada sobre precios y disponibilidad de medicamentos, a través de una plataforma accesible que contribuya al bienestar de las comunidades, optimizando tiempo y recursos.</p>
+      </div>
+      <div class="mvv-card">
+        <div class="mvv-icono">🌎</div>
+        <h3>Visión</h3>
+        <p>Convertirnos en la plataforma líder en consulta de medicamentos en comunidades rurales y urbanas, promoviendo la equidad en el acceso a la salud mediante el uso de tecnología e innovación social.</p>
+      </div>
+      <div class="mvv-card">
+        <div class="mvv-icono">💎</div>
+        <h3>Valores</h3>
+        <ul class="valores-lista">
+          <li><strong>Accesibilidad</strong> — información clara para todos.</li>
+          <li><strong>Solidaridad</strong> — bienestar colectivo primero.</li>
+          <li><strong>Innovación</strong> — tecnología para resolver.</li>
+          <li><strong>Colaboración</strong> — farmacias, médicos y usuarios.</li>
+          <li><strong>Compromiso social</strong> — reducir brechas de salud.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACTO ───────────────────────────────────────── -->
+  <section id="contacto" class="seccion">
+    <div class="seccion-header">
+      <span class="eyebrow">¿Tienes alguna farmacia o medicamento que agregar?</span>
+      <h2>Contáctanos</h2>
+    </div>
+    <div class="contacto-card">
+      <div class="contacto-form">
+        <div class="campo-grupo">
+          <label for="c-nombre" class="campo-label">Nombre completo</label>
+          <input type="text" id="c-nombre" class="campo-input" placeholder="Tu nombre">
+        </div>
+        <div class="campo-grupo">
+          <label for="c-correo" class="campo-label">Correo electrónico</label>
+          <input type="email" id="c-correo" class="campo-input" placeholder="correo@ejemplo.com">
+        </div>
+        <div class="campo-grupo">
+          <label for="c-mensaje" class="campo-label">Mensaje</label>
+          <textarea id="c-mensaje" class="campo-textarea" rows="4" placeholder="Escribe aquí tu sugerencia, farmacia o medicamento a agregar..."></textarea>
+        </div>
+        <button class="btn-primary" onclick="enviarContacto()">Enviar mensaje</button>
+        <div id="contacto-ok" class="contacto-ok" style="display:none;">✅ ¡Mensaje recibido! Gracias por contribuir.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="logo-icon">💊</span>
+        <span class="logo-text">Medi<strong>fast</strong></span>
+      </div>
+      <p class="footer-desc">Plataforma de consulta de medicamentos para comunidades dominicanas.</p>
+      <p class="footer-autores">
+        Desarrollado por <strong>Manuel Elias Pérez Lebrón</strong> &amp; <strong>Arlín Prado</strong>
+      </p>
+      <p class="footer-copy">© 2025 Medifast · Uso libre y gratuito</p>
+    </div>
+  </footer>
+
+  <!-- ── JAVASCRIPT ─────────────────────────────────────── -->
+  <script>
+    /* ──────────── BASE DE DATOS ──────────── */
+    const baseDatos = [
+      {
+        pueblo: "Elias Piña",
+        farmacia: "Farmacia Quisqueya",
+        medicamentos: [
+          { nombre: "Paracetamol",   precio: 100  },
+          { nombre: "Ibuprofeno",    precio: 85   },
+          { nombre: "Amoxicilina",   precio: 150  },
+          { nombre: "Vitamina C",    precio: 60   },
+          { nombre: "Diclofenac",    precio: 90   },
+          { nombre: "Omeprazol",     precio: 70   },
+          { nombre: "Metformina",    precio: 120  },
+          { nombre: "Aspirina",      precio: 50   },
+          { nombre: "Loratadina",    precio: 110  },
+          { nombre: "Pantoprazol",   precio: 95   },
+          { nombre: "Acetaminofen",  precio: 10   }
+        ]
+      },
+      {
+        pueblo: "Hermanas Mirabal",
+        farmacia: "Farmacia La Botica Dominicana",
+        medicamentos: [
+          { nombre: "Ibuprofeno",        precio: 25   },
+          { nombre: "Jarabe para la tos", precio: 90  },
+          { nombre: "Paracetamol",       precio: 110  },
+          { nombre: "Diclofenac",        precio: 100  },
+          { nombre: "Prodom",            precio: 50   },
+          { nombre: "Insulina",          precio: 1000 },
+          { nombre: "Jeringas",          precio: 10   },
+          { nombre: "Naproxeno",         precio: 100  },
+          { nombre: "Ponstan",           precio: 30   },
+          { nombre: "Potasio",           precio: 150  },
+          { nombre: "Acetaminofen",      precio: 10   }
+        ]
+      },
+      {
+        pueblo: "La Cienega",
+        farmacia: "Farmacia Popular",
+        medicamentos: [
+          { nombre: "Jarabe para la tos", precio: 90  },
+          { nombre: "Diclofenac",        precio: 100  },
+          { nombre: "Amoxicilina",       precio: 45   },
+          { nombre: "Termometro",        precio: 200  },
+          { nombre: "Fosfo B 12",        precio: 150  },
+          { nombre: "Calcio",            precio: 85   },
+          { nombre: "Vitamina K",        precio: 25   },
+          { nombre: "Omeprazol",         precio: 15   },
+          { nombre: "Laxante",           precio: 40   },
+          { nombre: "Alka seltzer",      precio: 35   },
+          { nombre: "Acetaminofen",      precio: 10   }
+        ]
+      },
+      {
+        pueblo: "Los Guandules",
+        farmacia: "Farmacia del pueblo",
+        medicamentos: [
+          { nombre: "Jarabe para la tos", precio: 90  },
+          { nombre: "Diclofenac",        precio: 100  },
+          { nombre: "Amoxicilina",       precio: 45   },
+          { nombre: "Termometro",        precio: 200  },
+          { nombre: "Peptobismol",       precio: 150  },
+          { nombre: "Calcio",            precio: 85   },
+          { nombre: "Vitamina K",        precio: 25   },
+          { nombre: "Omeprazol",         precio: 15   },
+          { nombre: "Laxante",           precio: 40   },
+          { nombre: "Anti Alergico",     precio: 35   },
+          { nombre: "Acetaminofen",      precio: 10   }
+        ]
+      },
+      {
+        pueblo: "Guaricanos",
+        farmacia: "Farmacia El Valle",
+        medicamentos: [
+          { nombre: "Jarabe para la tos", precio: 90  },
+          { nombre: "Diclofenac",        precio: 100  },
+          { nombre: "Tabcin",            precio: 45   },
+          { nombre: "Gotas para la vista", precio: 200},
+          { nombre: "Fosfo B 12",        precio: 150  },
+          { nombre: "Nalixone",          precio: 85   },
+          { nombre: "Vitamina K",        precio: 25   },
+          { nombre: "Omeprazol",         precio: 15   },
+          { nombre: "Laxante",           precio: 40   },
+          { nombre: "Mictazol",          precio: 35   },
+          { nombre: "Acetaminofen",      precio: 10   }
+        ]
+      },
+      {
+        pueblo: "Brisas Del Este",
+        farmacia: "Farmacia Tuni",
+        medicamentos: [
+          { nombre: "Jarabe para la tos", precio: 90  },
+          { nombre: "Evital",            precio: 100  },
+          { nombre: "Ciruelax",          precio: 45   },
+          { nombre: "Gotas para la vista", precio: 200},
+          { nombre: "Fosfo B 12",        precio: 150  },
+          { nombre: "Nalixone",          precio: 85   },
+          { nombre: "Albendazol",        precio: 25   },
+          { nombre: "Omeprazol",         precio: 15   },
+          { nombre: "Laxante",           precio: 40   },
+          { nombre: "Mictazol",          precio: 35   },
+          { nombre: "Acetaminofen",      precio: 10   }
+        ]
+      },
+      {
+        pueblo: "Los Frailes",
+        farmacia: "Farmacia Las Americas",
+        medicamentos: [
+          { nombre: "Jarabe para la tos", precio: 90  },
+          { nombre: "Evital",            precio: 100  },
+          { nombre: "Ciruelax",          precio: 45   },
+          { nombre: "Gotas para la vista", precio: 200},
+          { nombre: "Fosfo B 12",        precio: 150  },
+          { nombre: "Nalixone",          precio: 85   },
+          { nombre: "Albendazol",        precio: 25   },
+          { nombre: "Omeprazol",         precio: 15   },
+          { nombre: "Laxante",           precio: 40   },
+          { nombre: "Mictazol",          precio: 35   },
+          { nombre: "Acetaminofen",      precio: 10   }
+        ]
+      },
+      {
+        pueblo: "Los Mina",
+        farmacia: "Farmacia Tu Opción",
+        medicamentos: [
+          { nombre: "Jarabe para la tos", precio: 90  },
+          { nombre: "Evital",            precio: 100  },
+          { nombre: "Vaporub",           precio: 45   },
+          { nombre: "Gotas para la vista", precio: 200},
+          { nombre: "Fosfo B 12",        precio: 150  },
+          { nombre: "Nalixone",          precio: 85   },
+          { nombre: "Biodramina",        precio: 25   },
+          { nombre: "Omeprazol",         precio: 15   },
+          { nombre: "Laxante",           precio: 40   },
+          { nombre: "Mictazol",          precio: 35   },
+          { nombre: "Acetaminofen",      precio: 10   }
+        ]
+      }
+    ];
+
+    /* ──────────── SUGERENCIAS ──────────── */
+    let sugerenciasActivas = [];
+    let indexActivo = -1;
+
+    function mostrarSugerencias() {
+      const input = document.getElementById("medicamento").value.toLowerCase().trim();
+      const div   = document.getElementById("sugerencias");
+      div.innerHTML = "";
+      indexActivo = -1;
+
+      if (input.length < 1) { div.style.display = "none"; return; }
+
+      const nombres = new Set();
+      baseDatos.forEach(f => f.medicamentos.forEach(m => {
+        if (m.nombre.toLowerCase().includes(input)) nombres.add(m.nombre);
+      }));
+      sugerenciasActivas = [...nombres].slice(0, 7);
+
+      if (!sugerenciasActivas.length) { div.style.display = "none"; return; }
+
+      sugerenciasActivas.forEach((s, i) => {
+        const item = document.createElement("div");
+        item.className = "sug-item";
+        item.setAttribute("role", "option");
+        item.setAttribute("tabindex", "0");
+        const regex = new RegExp(`(${input})`, "gi");
+        item.innerHTML = "💊 " + s.replace(regex, "<mark>$1</mark>");
+        item.onclick = () => seleccionarSugerencia(s);
+        item.onkeydown = e => { if (e.key === "Enter") seleccionarSugerencia(s); };
+        div.appendChild(item);
+      });
+      div.style.display = "block";
+    }
+
+    function seleccionarSugerencia(nombre) {
+      document.getElementById("medicamento").value = nombre;
+      document.getElementById("sugerencias").style.display = "none";
+    }
+
+    function manejarTecla(e) {
+      const div   = document.getElementById("sugerencias");
+      const items = div.querySelectorAll(".sug-item");
+      if (e.key === "ArrowDown") {
+        indexActivo = Math.min(indexActivo + 1, items.length - 1);
+        items.forEach((el, i) => el.classList.toggle("activo", i === indexActivo));
+        e.preventDefault();
+      } else if (e.key === "ArrowUp") {
+        indexActivo = Math.max(indexActivo - 1, 0);
+        items.forEach((el, i) => el.classList.toggle("activo", i === indexActivo));
+        e.preventDefault();
+      } else if (e.key === "Enter") {
+        if (indexActivo >= 0 && items[indexActivo]) {
+          seleccionarSugerencia(sugerenciasActivas[indexActivo]);
+        } else {
+          buscarMedicamento();
         }
+        e.preventDefault();
+      } else if (e.key === "Escape") {
+        div.style.display = "none";
+      }
+    }
 
-        function mostrarSugerencias() {
-            const input = document.getElementById("medicamento").value.toLowerCase();
-            const sugerenciasDiv = document.getElementById("sugerencias");
-            sugerenciasDiv.innerHTML = "";
+    document.addEventListener("click", e => {
+      if (!e.target.closest(".autocomplete-wrapper")) {
+        document.getElementById("sugerencias").style.display = "none";
+      }
+    });
 
-            if (input.length === 0) {
-                sugerenciasDiv.style.display = "none";
-                return;
-            }
+    /* ──────────── BUSCAR EN PUEBLO ──────────── */
+    function buscarMedicamento() {
+      const pueblo  = document.getElementById("pueblo").value;
+      const medName = document.getElementById("medicamento").value.trim();
+      const medLow  = medName.toLowerCase();
 
-            let sugerencias = [];
-            baseDatos.forEach(farmacia => {
-                farmacia.medicamentos.forEach(med => {
-                    if (med.nombre.toLowerCase().startsWith(input) && !sugerencias.includes(med.nombre)) {
-                        sugerencias.push(med.nombre);
-                    }
-                });
-            });
+      ocultarResultados();
 
-            if (sugerencias.length > 0) {
-                sugerenciasDiv.style.display = "block";
-                sugerencias.forEach(s => {
-                    const div = document.createElement("div");
-                    div.textContent = s;
-                    div.onclick = function() {
-                        document.getElementById("medicamento").value = s;
-                        sugerenciasDiv.style.display = "none";
-                    };
-                    sugerenciasDiv.appendChild(div);
-                });
-            } else {
-                sugerenciasDiv.style.display = "none";
-            }
-        }
+      if (!pueblo || !medName) {
+        mostrarAlerta("Por favor selecciona una comunidad e ingresa un medicamento.");
+        return;
+      }
 
-        function vaciarCampos() {
-            document.getElementById("pueblo").value = "";
-            document.getElementById("medicamento").value = "";
-            document.getElementById("precio").value = "";
-            document.getElementById("farmacia").value = "";
-        }
-    </script>
+      const entry = baseDatos.find(f => f.pueblo === pueblo);
+      if (!entry) return;
+
+      const med = entry.medicamentos.find(m => m.nombre.toLowerCase() === medLow);
+
+      if (med) {
+        document.getElementById("res-nombre").textContent   = med.nombre;
+        document.getElementById("res-farmacia").textContent = entry.farmacia;
+        document.getElementById("res-precio").textContent   = "$" + med.precio.toLocaleString("es-DO");
+        document.getElementById("res-pueblo").textContent   = entry.pueblo;
+        mostrar("resultado-principal");
+      } else {
+        mostrar("resultado-vacio");
+      }
+    }
+
+    /* ──────────── COMPARAR EN TODOS ──────────── */
+    function compararPrecios() {
+      const medName = document.getElementById("medicamento").value.trim();
+      const medLow  = medName.toLowerCase();
+
+      ocultarResultados();
+
+      if (!medName) {
+        mostrarAlerta("Ingresa el nombre de un medicamento para comparar.");
+        return;
+      }
+
+      const filas = [];
+      baseDatos.forEach(f => {
+        const med = f.medicamentos.find(m => m.nombre.toLowerCase() === medLow);
+        if (med) filas.push({ pueblo: f.pueblo, farmacia: f.farmacia, precio: med.precio, nombre: med.nombre });
+      });
+
+      if (!filas.length) {
+        mostrar("resultado-vacio");
+        return;
+      }
+
+      filas.sort((a, b) => a.precio - b.precio);
+      const minPrecio = filas[0].precio;
+
+      document.getElementById("tabla-med-nombre").textContent = filas[0].nombre;
+      const tbody = document.getElementById("tabla-body");
+      tbody.innerHTML = "";
+
+      filas.forEach((f, i) => {
+        const tr = document.createElement("tr");
+        const esMasBarato = f.precio === minPrecio;
+        if (esMasBarato) tr.classList.add("fila-mejor");
+        tr.innerHTML = `
+          <td>${f.pueblo}</td>
+          <td>${f.farmacia}</td>
+          <td class="td-precio${esMasBarato ? " precio-mejor" : ""}">$${f.precio.toLocaleString("es-DO")}</td>
+          <td>${esMasBarato ? '<span class="badge-mejor">Mejor precio ✔</span>' : (i === filas.length - 1 ? '<span class="badge-alto">Más caro</span>' : '<span class="badge-normal">Disponible</span>')}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      mostrar("tabla-comparacion");
+    }
+
+    /* ──────────── CONTACTO ──────────── */
+    function enviarContacto() {
+      const nombre  = document.getElementById("c-nombre").value.trim();
+      const correo  = document.getElementById("c-correo").value.trim();
+      const mensaje = document.getElementById("c-mensaje").value.trim();
+      if (!nombre || !correo || !mensaje) {
+        mostrarAlerta("Por favor completa todos los campos del formulario.");
+        return;
+      }
+      document.getElementById("c-nombre").value  = "";
+      document.getElementById("c-correo").value  = "";
+      document.getElementById("c-mensaje").value = "";
+      mostrar("contacto-ok");
+      setTimeout(() => { document.getElementById("contacto-ok").style.display = "none"; }, 4000);
+    }
+
+    /* ──────────── HELPERS ──────────── */
+    function vaciarCampos() {
+      document.getElementById("pueblo").value      = "";
+      document.getElementById("medicamento").value = "";
+      document.getElementById("sugerencias").style.display = "none";
+      ocultarResultados();
+    }
+
+    function ocultarResultados() {
+      ["resultado-principal","resultado-vacio","tabla-comparacion"].forEach(id => {
+        document.getElementById(id).style.display = "none";
+      });
+    }
+
+    function mostrar(id) {
+      const el = document.getElementById(id);
+      el.style.display = "block";
+      el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function mostrarAlerta(msg) {
+      const div = document.createElement("div");
+      div.className = "alerta-temporal";
+      div.textContent = msg;
+      document.body.appendChild(div);
+      setTimeout(() => div.remove(), 3000);
+    }
+
+    function toggleMenu() {
+      document.querySelector(".nav-links").classList.toggle("open");
+    }
+
+    /* Cerrar menú al hacer click en un enlace */
+    document.querySelectorAll(".nav-links a").forEach(a => {
+      a.addEventListener("click", () => {
+        document.querySelector(".nav-links").classList.remove("open");
+      });
+    });
+  </script>
+
 </body>
-<footer>
-    <p>No Copyright -
-        <a class="Dueños">Manuel Elias Pérez Lebrón</a> </p>
-</footer>
-
 </html>
