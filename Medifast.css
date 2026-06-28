@@ -1,662 +1,1019 @@
-<!DOCTYPE html>
-<html lang="es">
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+:root {
+    --azul: #1565c0;
+    --azul-med: #1976d2;
+    --azul-claro: #e3f0ff;
+    --verde: #2e7d32;
+    --verde-claro: #e8f5e9;
+    --gris-bg: #f5f7fa;
+    --gris-borde: #dde3ec;
+    --gris-texto: #5a6478;
+    --negro: #111827;
+    --blanco: #ffffff;
+    --sombra-sm: 0 2px 8px rgba(0, 0, 0, .07);
+    --sombra-md: 0 4px 20px rgba(0, 0, 0, .10);
+    --radio: 12px;
+    --fuente: 'Inter', Arial, sans-serif;
+    --fuente-titulo: 'Oswald', sans-serif;
+    --transicion: .2s ease;
+}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Medifast — Consulta precios y disponibilidad de medicamentos en farmacias de tu comunidad en República Dominicana.">
-  <title>Medifast — Medicamentos en tu comunidad</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Medifast.css">
-</head>
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-<body>
+html {
+    scroll-behavior: smooth;
+}
 
-  <!-- ── NAVBAR ─────────────────────────────────────────── -->
-  <header class="navbar">
-    <div class="navbar-inner">
-      <a href="#inicio" class="nav-logo">
-        <span class="logo-icon">💊</span>
-        <span class="logo-text">Medi<strong>fast</strong></span>
-      </a>
-      <nav class="nav-links" aria-label="Navegación principal">
-        <a href="#beneficios">Beneficios</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#buscador">Buscar</a>
-        <a href="#estadisticas">Estadísticas</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-      <button class="nav-cta" onclick="document.getElementById('buscador').scrollIntoView({behavior:'smooth'})">
-        Buscar medicamento
-      </button>
-      <button class="hamburger" aria-label="Abrir menú" onclick="toggleMenu()">&#9776;</button>
-    </div>
-  </header>
+body {
+    font-family: var(--fuente);
+    font-size: 16px;
+    color: var(--negro);
+    background: var(--blanco);
+    line-height: 1.65;
+}
 
-  <!-- ── HERO ───────────────────────────────────────────── -->
-  <section id="inicio" class="hero">
-    <div class="hero-content">
-      <span class="hero-badge">🇩🇴 República Dominicana</span>
-      <h1 class="hero-titulo">
-        Encuentra tus medicamentos<br>
-        <span class="hero-acento">cerca de ti, al mejor precio</span>
-      </h1>
-      <p class="hero-sub">
-        Consulta disponibilidad y precios en farmacias de tu comunidad.
-        Sin filas. Sin sorpresas.
-      </p>
-      <div class="hero-actions">
-        <button class="btn-primary" onclick="document.getElementById('buscador').scrollIntoView({behavior:'smooth'})">
-          Consultar ahora
-        </button>
-        <button class="btn-ghost" onclick="document.getElementById('beneficios').scrollIntoView({behavior:'smooth'})">
-          Conocer más
-        </button>
-      </div>
-    </div>
-    <div class="hero-visual" aria-hidden="true">
-      <div class="hero-card-float">
-        <div class="hcf-icon">✔</div>
-        <div>
-          <div class="hcf-label">Paracetamol encontrado</div>
-          <div class="hcf-sub">Farmacia Quisqueya · $100</div>
-        </div>
-      </div>
-      <div class="hero-pill-grid">
-        <div class="pill-item">💊 Ibuprofeno</div>
-        <div class="pill-item">💉 Insulina</div>
-        <div class="pill-item">🌿 Vitamina C</div>
-        <div class="pill-item">🩺 Amoxicilina</div>
-        <div class="pill-item">🔬 Omeprazol</div>
-        <div class="pill-item">💊 Aspirina</div>
-      </div>
-    </div>
-  </section>
+img {
+    max-width: 100%;
+    display: block;
+}
 
-  <!-- ── ESTADÍSTICAS ───────────────────────────────────── -->
-  <section id="estadisticas" class="stats-bar">
-    <div class="stat-item">
-      <span class="stat-num">8</span>
-      <span class="stat-lbl">Comunidades</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">80+</span>
-      <span class="stat-lbl">Medicamentos</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">8</span>
-      <span class="stat-lbl">Farmacias</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <span class="stat-num">100%</span>
-      <span class="stat-lbl">Gratuito</span>
-    </div>
-  </section>
+a {
+    color: var(--azul);
+    text-decoration: none;
+}
 
-  <!-- ── BENEFICIOS ─────────────────────────────────────── -->
-  <section id="beneficios" class="seccion">
-    <div class="seccion-header">
-      <span class="eyebrow">¿Por qué Medifast?</span>
-      <h2>Tu salud, más accesible</h2>
-      <p class="seccion-sub">Diseñado para comunidades dominicanas con el objetivo de reducir tiempo y costo al buscar medicamentos.</p>
-    </div>
-    <div class="cards-grid">
-      <div class="feature-card">
-        <div class="fc-icon" style="background:#e8f4ff;">🔍</div>
-        <h3>Búsqueda rápida</h3>
-        <p>Autocomplete en tiempo real que te sugiere medicamentos mientras escribes. Sin esperas.</p>
-      </div>
-      <div class="feature-card">
-        <div class="fc-icon" style="background:#e8fff0;">📍</div>
-        <h3>Farmacias cercanas</h3>
-        <p>Selecciona tu pueblo y ve exactamente cuál farmacia tiene el medicamento disponible hoy.</p>
-      </div>
-      <div class="feature-card">
-        <div class="fc-icon" style="background:#fff8e8;">💰</div>
-        <h3>Comparación de precios</h3>
-        <p>Ve el precio del mismo medicamento en todas las comunidades para elegir la mejor opción.</p>
-      </div>
-      <div class="feature-card">
-        <div class="fc-icon" style="background:#f3e8ff;">📱</div>
-        <h3>Acceso universal</h3>
-        <p>Funciona en cualquier dispositivo, incluso en conexiones lentas. Diseñado para todos.</p>
-      </div>
-    </div>
-  </section>
+a:hover {
+    text-decoration: underline;
+}
 
-  <!-- ── BUSCADOR PRINCIPAL ─────────────────────────────── -->
-  <section id="buscador" class="seccion buscador-seccion">
-    <div class="seccion-header">
-      <span class="eyebrow">Consulta en línea</span>
-      <h2>Busca tu medicamento</h2>
-    </div>
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, .95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--gris-borde);
+    box-shadow: var(--sombra-sm);
+}
 
-    <div class="buscador-card">
-      <div class="buscador-form">
+.navbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
 
-        <!-- Pueblo -->
-        <div class="campo-grupo">
-          <label for="pueblo" class="campo-label">
-            <span class="campo-icono">📍</span> Selecciona tu comunidad
-          </label>
-          <select id="pueblo" class="campo-select">
-            <option value="">Elige un pueblo o sector...</option>
-            <option value="Elias Piña">Elias Piña</option>
-            <option value="Hermanas Mirabal">Hermanas Mirabal</option>
-            <option value="La Cienega">La Cienega</option>
-            <option value="Los Guandules">Los Guandules</option>
-            <option value="Guaricanos">Guaricanos</option>
-            <option value="Brisas Del Este">Brisas del Este</option>
-            <option value="Los Frailes">Los Frailes</option>
-            <option value="Los Mina">Los Mina</option>
-          </select>
-        </div>
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--fuente-titulo);
+    font-size: 22px;
+    color: var(--azul);
+    text-decoration: none;
+    flex-shrink: 0;
+}
 
-        <!-- Medicamento -->
-        <div class="campo-grupo">
-          <label for="medicamento" class="campo-label">
-            <span class="campo-icono">💊</span> Nombre del medicamento
-          </label>
-          <div class="autocomplete-wrapper">
-            <input
-              type="text"
-              id="medicamento"
-              class="campo-input"
-              placeholder="Ej: Paracetamol, Ibuprofeno..."
-              autocomplete="off"
-              onkeyup="mostrarSugerencias()"
-              onkeydown="manejarTecla(event)"
-              oninput="mostrarSugerencias()"
-            >
-            <div id="sugerencias" class="sugerencias-dropdown" role="listbox" aria-label="Sugerencias de medicamentos"></div>
-          </div>
-        </div>
+.logo-icon {
+    font-size: 20px;
+}
 
-        <!-- Botones -->
-        <div class="buscador-acciones">
-          <button class="btn-primary btn-buscar" onclick="buscarMedicamento()">
-            🔍 Buscar
-          </button>
-          <button class="btn-secondary btn-comparar" onclick="compararPrecios()">
-            📊 Comparar en todos los pueblos
-          </button>
-          <button class="btn-ghost btn-limpiar" onclick="vaciarCampos()">
-            ✕ Limpiar
-          </button>
-        </div>
-      </div>
+.logo-text strong {
+    color: var(--azul);
+}
 
-      <!-- Resultado principal -->
-      <div id="resultado-principal" class="resultado-box" style="display:none;">
-        <h3 class="resultado-titulo">Resultado encontrado</h3>
-        <div class="resultado-grid">
-          <div class="resultado-item">
-            <span class="ri-label">Medicamento</span>
-            <span class="ri-valor" id="res-nombre">—</span>
-          </div>
-          <div class="resultado-item">
-            <span class="ri-label">Farmacia</span>
-            <span class="ri-valor" id="res-farmacia">—</span>
-          </div>
-          <div class="resultado-item resultado-precio">
-            <span class="ri-label">Precio</span>
-            <span class="ri-valor ri-precio" id="res-precio">—</span>
-          </div>
-          <div class="resultado-item">
-            <span class="ri-label">Comunidad</span>
-            <span class="ri-valor" id="res-pueblo">—</span>
-          </div>
-        </div>
-      </div>
+.nav-links {
+    display: flex;
+    gap: 4px;
+    margin-left: auto;
+}
 
-      <!-- No encontrado -->
-      <div id="resultado-vacio" class="resultado-vacio" style="display:none;">
-        <div class="rv-icono">🔎</div>
-        <p class="rv-texto">Medicamento no disponible en esa comunidad. Prueba en otra o usa "Comparar".</p>
-      </div>
+.nav-links a {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gris-texto);
+    text-decoration: none;
+    transition: background var(--transicion), color var(--transicion);
+}
 
-      <!-- Tabla comparativa -->
-      <div id="tabla-comparacion" class="tabla-comparacion" style="display:none;">
-        <h3 class="tabla-titulo">
-          <span id="tabla-med-nombre">Medicamento</span> — precios por comunidad
-        </h3>
-        <div class="tabla-wrapper">
-          <table class="tabla-precios">
-            <thead>
-              <tr>
-                <th>Comunidad</th>
-                <th>Farmacia</th>
-                <th>Precio</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody id="tabla-body"></tbody>
-          </table>
-        </div>
-        <p class="tabla-nota">💡 El precio más bajo aparece resaltado en verde.</p>
-      </div>
+.nav-links a:hover {
+    background: var(--azul-claro);
+    color: var(--azul);
+    text-decoration: none;
+}
 
-    </div>
-  </section>
+.nav-cta {
+    flex-shrink: 0;
+    padding: 8px 18px;
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transicion), transform var(--transicion);
+}
 
-  <!-- ── MISIÓN, VISIÓN Y VALORES ───────────────────────── -->
-  <section id="nosotros" class="seccion seccion-oscura">
-    <div class="seccion-header">
-      <span class="eyebrow eyebrow-claro">Quiénes somos</span>
-      <h2>Misión, Visión y Valores</h2>
-      <p class="seccion-sub seccion-sub-claro">El propósito detrás de Medifast.</p>
-    </div>
-    <div class="mvv-grid">
-      <div class="mvv-card">
-        <div class="mvv-icono">🎯</div>
-        <h3>Misión</h3>
-        <p>Facilitar el acceso a información confiable y actualizada sobre precios y disponibilidad de medicamentos, a través de una plataforma accesible que contribuya al bienestar de las comunidades, optimizando tiempo y recursos.</p>
-      </div>
-      <div class="mvv-card">
-        <div class="mvv-icono">🌎</div>
-        <h3>Visión</h3>
-        <p>Convertirnos en la plataforma líder en consulta de medicamentos en comunidades rurales y urbanas, promoviendo la equidad en el acceso a la salud mediante el uso de tecnología e innovación social.</p>
-      </div>
-      <div class="mvv-card">
-        <div class="mvv-icono">💎</div>
-        <h3>Valores</h3>
-        <ul class="valores-lista">
-          <li><strong>Accesibilidad</strong> — información clara para todos.</li>
-          <li><strong>Solidaridad</strong> — bienestar colectivo primero.</li>
-          <li><strong>Innovación</strong> — tecnología para resolver.</li>
-          <li><strong>Colaboración</strong> — farmacias, médicos y usuarios.</li>
-          <li><strong>Compromiso social</strong> — reducir brechas de salud.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+.nav-cta:hover {
+    background: var(--azul-med);
+    transform: translateY(-1px);
+}
 
-  <!-- ── CONTACTO ───────────────────────────────────────── -->
-  <section id="contacto" class="seccion">
-    <div class="seccion-header">
-      <span class="eyebrow">¿Tienes alguna farmacia o medicamento que agregar?</span>
-      <h2>Contáctanos</h2>
-    </div>
-    <div class="contacto-card">
-      <div class="contacto-form">
-        <div class="campo-grupo">
-          <label for="c-nombre" class="campo-label">Nombre completo</label>
-          <input type="text" id="c-nombre" class="campo-input" placeholder="Tu nombre">
-        </div>
-        <div class="campo-grupo">
-          <label for="c-correo" class="campo-label">Correo electrónico</label>
-          <input type="email" id="c-correo" class="campo-input" placeholder="correo@ejemplo.com">
-        </div>
-        <div class="campo-grupo">
-          <label for="c-mensaje" class="campo-label">Mensaje</label>
-          <textarea id="c-mensaje" class="campo-textarea" rows="4" placeholder="Escribe aquí tu sugerencia, farmacia o medicamento a agregar..."></textarea>
-        </div>
-        <button class="btn-primary" onclick="enviarContacto()">Enviar mensaje</button>
-        <div id="contacto-ok" class="contacto-ok" style="display:none;">✅ ¡Mensaje recibido! Gracias por contribuir.</div>
-      </div>
-    </div>
-  </section>
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--azul);
+    margin-left: auto;
+}
 
-  <!-- ── FOOTER ─────────────────────────────────────────── -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-logo">
-        <span class="logo-icon">💊</span>
-        <span class="logo-text">Medi<strong>fast</strong></span>
-      </div>
-      <p class="footer-desc">Plataforma de consulta de medicamentos para comunidades dominicanas.</p>
-      <p class="footer-autores">
-        Desarrollado por <strong>Manuel Elias Pérez Lebrón</strong> &amp; <strong>Arlín Prado</strong>
-      </p>
-      <p class="footer-copy">© 2025 Medifast · Uso libre y gratuito</p>
-    </div>
-  </footer>
+.hero {
+    background: linear-gradient(135deg, #e3f0ff 0%, #f0f9ff 50%, #e8f5e9 100%);
+    padding: 80px 24px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
 
-  <!-- ── JAVASCRIPT ─────────────────────────────────────── -->
-  <script>
-    /* ──────────── BASE DE DATOS ──────────── */
-    const baseDatos = [
-      {
-        pueblo: "Elias Piña",
-        farmacia: "Farmacia Quisqueya",
-        medicamentos: [
-          { nombre: "Paracetamol",   precio: 100  },
-          { nombre: "Ibuprofeno",    precio: 85   },
-          { nombre: "Amoxicilina",   precio: 150  },
-          { nombre: "Vitamina C",    precio: 60   },
-          { nombre: "Diclofenac",    precio: 90   },
-          { nombre: "Omeprazol",     precio: 70   },
-          { nombre: "Metformina",    precio: 120  },
-          { nombre: "Aspirina",      precio: 50   },
-          { nombre: "Loratadina",    precio: 110  },
-          { nombre: "Pantoprazol",   precio: 95   },
-          { nombre: "Acetaminofen",  precio: 10   }
-        ]
-      },
-      {
-        pueblo: "Hermanas Mirabal",
-        farmacia: "Farmacia La Botica Dominicana",
-        medicamentos: [
-          { nombre: "Ibuprofeno",        precio: 25   },
-          { nombre: "Jarabe para la tos", precio: 90  },
-          { nombre: "Paracetamol",       precio: 110  },
-          { nombre: "Diclofenac",        precio: 100  },
-          { nombre: "Prodom",            precio: 50   },
-          { nombre: "Insulina",          precio: 1000 },
-          { nombre: "Jeringas",          precio: 10   },
-          { nombre: "Naproxeno",         precio: 100  },
-          { nombre: "Ponstan",           precio: 30   },
-          { nombre: "Potasio",           precio: 150  },
-          { nombre: "Acetaminofen",      precio: 10   }
-        ]
-      },
-      {
-        pueblo: "La Cienega",
-        farmacia: "Farmacia Popular",
-        medicamentos: [
-          { nombre: "Jarabe para la tos", precio: 90  },
-          { nombre: "Diclofenac",        precio: 100  },
-          { nombre: "Amoxicilina",       precio: 45   },
-          { nombre: "Termometro",        precio: 200  },
-          { nombre: "Fosfo B 12",        precio: 150  },
-          { nombre: "Calcio",            precio: 85   },
-          { nombre: "Vitamina K",        precio: 25   },
-          { nombre: "Omeprazol",         precio: 15   },
-          { nombre: "Laxante",           precio: 40   },
-          { nombre: "Alka seltzer",      precio: 35   },
-          { nombre: "Acetaminofen",      precio: 10   }
-        ]
-      },
-      {
-        pueblo: "Los Guandules",
-        farmacia: "Farmacia del pueblo",
-        medicamentos: [
-          { nombre: "Jarabe para la tos", precio: 90  },
-          { nombre: "Diclofenac",        precio: 100  },
-          { nombre: "Amoxicilina",       precio: 45   },
-          { nombre: "Termometro",        precio: 200  },
-          { nombre: "Peptobismol",       precio: 150  },
-          { nombre: "Calcio",            precio: 85   },
-          { nombre: "Vitamina K",        precio: 25   },
-          { nombre: "Omeprazol",         precio: 15   },
-          { nombre: "Laxante",           precio: 40   },
-          { nombre: "Anti Alergico",     precio: 35   },
-          { nombre: "Acetaminofen",      precio: 10   }
-        ]
-      },
-      {
-        pueblo: "Guaricanos",
-        farmacia: "Farmacia El Valle",
-        medicamentos: [
-          { nombre: "Jarabe para la tos", precio: 90  },
-          { nombre: "Diclofenac",        precio: 100  },
-          { nombre: "Tabcin",            precio: 45   },
-          { nombre: "Gotas para la vista", precio: 200},
-          { nombre: "Fosfo B 12",        precio: 150  },
-          { nombre: "Nalixone",          precio: 85   },
-          { nombre: "Vitamina K",        precio: 25   },
-          { nombre: "Omeprazol",         precio: 15   },
-          { nombre: "Laxante",           precio: 40   },
-          { nombre: "Mictazol",          precio: 35   },
-          { nombre: "Acetaminofen",      precio: 10   }
-        ]
-      },
-      {
-        pueblo: "Brisas Del Este",
-        farmacia: "Farmacia Tuni",
-        medicamentos: [
-          { nombre: "Jarabe para la tos", precio: 90  },
-          { nombre: "Evital",            precio: 100  },
-          { nombre: "Ciruelax",          precio: 45   },
-          { nombre: "Gotas para la vista", precio: 200},
-          { nombre: "Fosfo B 12",        precio: 150  },
-          { nombre: "Nalixone",          precio: 85   },
-          { nombre: "Albendazol",        precio: 25   },
-          { nombre: "Omeprazol",         precio: 15   },
-          { nombre: "Laxante",           precio: 40   },
-          { nombre: "Mictazol",          precio: 35   },
-          { nombre: "Acetaminofen",      precio: 10   }
-        ]
-      },
-      {
-        pueblo: "Los Frailes",
-        farmacia: "Farmacia Las Americas",
-        medicamentos: [
-          { nombre: "Jarabe para la tos", precio: 90  },
-          { nombre: "Evital",            precio: 100  },
-          { nombre: "Ciruelax",          precio: 45   },
-          { nombre: "Gotas para la vista", precio: 200},
-          { nombre: "Fosfo B 12",        precio: 150  },
-          { nombre: "Nalixone",          precio: 85   },
-          { nombre: "Albendazol",        precio: 25   },
-          { nombre: "Omeprazol",         precio: 15   },
-          { nombre: "Laxante",           precio: 40   },
-          { nombre: "Mictazol",          precio: 35   },
-          { nombre: "Acetaminofen",      precio: 10   }
-        ]
-      },
-      {
-        pueblo: "Los Mina",
-        farmacia: "Farmacia Tu Opción",
-        medicamentos: [
-          { nombre: "Jarabe para la tos", precio: 90  },
-          { nombre: "Evital",            precio: 100  },
-          { nombre: "Vaporub",           precio: 45   },
-          { nombre: "Gotas para la vista", precio: 200},
-          { nombre: "Fosfo B 12",        precio: 150  },
-          { nombre: "Nalixone",          precio: 85   },
-          { nombre: "Biodramina",        precio: 25   },
-          { nombre: "Omeprazol",         precio: 15   },
-          { nombre: "Laxante",           precio: 40   },
-          { nombre: "Mictazol",          precio: 35   },
-          { nombre: "Acetaminofen",      precio: 10   }
-        ]
-      }
-    ];
+.hero-content {
+    max-width: 520px;
+}
 
-    /* ──────────── SUGERENCIAS ──────────── */
-    let sugerenciasActivas = [];
-    let indexActivo = -1;
+.hero-badge {
+    display: inline-block;
+    background: var(--azul-claro);
+    color: var(--azul);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #b3d3ff;
+}
 
-    function mostrarSugerencias() {
-      const input = document.getElementById("medicamento").value.toLowerCase().trim();
-      const div   = document.getElementById("sugerencias");
-      div.innerHTML = "";
-      indexActivo = -1;
+.hero-titulo {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--negro);
+    margin-bottom: 16px;
+}
 
-      if (input.length < 1) { div.style.display = "none"; return; }
+.hero-acento {
+    color: var(--azul);
+    display: block;
+}
 
-      const nombres = new Set();
-      baseDatos.forEach(f => f.medicamentos.forEach(m => {
-        if (m.nombre.toLowerCase().includes(input)) nombres.add(m.nombre);
-      }));
-      sugerenciasActivas = [...nombres].slice(0, 7);
+.hero-sub {
+    font-size: 18px;
+    color: var(--gris-texto);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
 
-      if (!sugerenciasActivas.length) { div.style.display = "none"; return; }
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
 
-      sugerenciasActivas.forEach((s, i) => {
-        const item = document.createElement("div");
-        item.className = "sug-item";
-        item.setAttribute("role", "option");
-        item.setAttribute("tabindex", "0");
-        const regex = new RegExp(`(${input})`, "gi");
-        item.innerHTML = "💊 " + s.replace(regex, "<mark>$1</mark>");
-        item.onclick = () => seleccionarSugerencia(s);
-        item.onkeydown = e => { if (e.key === "Enter") seleccionarSugerencia(s); };
-        div.appendChild(item);
-      });
-      div.style.display = "block";
+.btn-primary {
+    padding: 12px 28px;
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    border-radius: var(--radio);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transicion), transform var(--transicion), box-shadow var(--transicion);
+}
+
+.btn-primary:hover {
+    background: #0d47a1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(21, 101, 192, .35);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    padding: 12px 24px;
+    background: var(--blanco);
+    color: var(--azul);
+    border: 2px solid var(--azul);
+    border-radius: var(--radio);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transicion), transform var(--transicion);
+}
+
+.btn-secondary:hover {
+    background: var(--azul-claro);
+    transform: translateY(-1px);
+}
+
+.btn-ghost {
+    padding: 12px 20px;
+    background: transparent;
+    color: var(--gris-texto);
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transicion), color var(--transicion);
+}
+
+.btn-ghost:hover {
+    background: var(--gris-bg);
+    color: var(--negro);
+}
+
+.hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 320px;
+}
+
+.hero-card-float {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--blanco);
+    border-radius: var(--radio);
+    padding: 16px 20px;
+    box-shadow: var(--sombra-md);
+    border: 1px solid var(--gris-borde);
+    animation: flotar 3s ease-in-out infinite;
+}
+
+@keyframes flotar {
+    0%,
+    100% {
+        transform: translateY(0);
     }
-
-    function seleccionarSugerencia(nombre) {
-      document.getElementById("medicamento").value = nombre;
-      document.getElementById("sugerencias").style.display = "none";
+    50% {
+        transform: translateY(-6px);
     }
+}
 
-    function manejarTecla(e) {
-      const div   = document.getElementById("sugerencias");
-      const items = div.querySelectorAll(".sug-item");
-      if (e.key === "ArrowDown") {
-        indexActivo = Math.min(indexActivo + 1, items.length - 1);
-        items.forEach((el, i) => el.classList.toggle("activo", i === indexActivo));
-        e.preventDefault();
-      } else if (e.key === "ArrowUp") {
-        indexActivo = Math.max(indexActivo - 1, 0);
-        items.forEach((el, i) => el.classList.toggle("activo", i === indexActivo));
-        e.preventDefault();
-      } else if (e.key === "Enter") {
-        if (indexActivo >= 0 && items[indexActivo]) {
-          seleccionarSugerencia(sugerenciasActivas[indexActivo]);
-        } else {
-          buscarMedicamento();
-        }
-        e.preventDefault();
-      } else if (e.key === "Escape") {
-        div.style.display = "none";
-      }
+.hcf-icon {
+    width: 40px;
+    height: 40px;
+    background: #e8f5e9;
+    color: var(--verde);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.hcf-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--negro);
+}
+
+.hcf-sub {
+    font-size: 12px;
+    color: var(--gris-texto);
+}
+
+.hero-pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.pill-item {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--gris-texto);
+    font-weight: 500;
+}
+
+.stats-bar {
+    background: var(--azul);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 48px;
+}
+
+.stat-num {
+    font-family: var(--fuente-titulo);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.stat-lbl {
+    font-size: 13px;
+    opacity: .8;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 48px;
+    background: rgba(255, 255, 255, .2);
+}
+
+.seccion {
+    padding: 80px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.seccion-oscura {
+    background: #0d2b5e;
+    max-width: 100%;
+    color: #fff;
+    padding: 80px 24px;
+}
+
+.seccion-oscura .seccion {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.seccion-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--azul);
+    margin-bottom: 12px;
+}
+
+.eyebrow-claro {
+    color: #90caf9;
+}
+
+.seccion-header h2 {
+    font-family: var(--fuente-titulo);
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 700;
+    color: var(--negro);
+    margin-bottom: 12px;
+}
+
+.seccion-oscura .seccion-header h2 {
+    color: #fff;
+}
+
+.seccion-sub {
+    font-size: 17px;
+    color: var(--gris-texto);
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.seccion-sub-claro {
+    color: #b3cee8;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.feature-card {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio);
+    padding: 28px 24px;
+    box-shadow: var(--sombra-sm);
+    transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-md);
+}
+
+.fc-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+.feature-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--negro);
+    margin-bottom: 8px;
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: var(--gris-texto);
+    line-height: 1.6;
+}
+
+.buscador-seccion {
+    background: var(--gris-bg);
+    max-width: 100%;
+    padding: 80px 24px;
+}
+
+.buscador-seccion>.seccion-header {
+    max-width: 1100px;
+    margin: 0 auto 48px;
+}
+
+.buscador-card {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 18px;
+    padding: 40px 40px 48px;
+    max-width: 780px;
+    margin: 0 auto;
+    box-shadow: var(--sombra-md);
+}
+
+.buscador-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.campo-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--negro);
+}
+
+.campo-icono {
+    margin-right: 4px;
+}
+
+.campo-select,
+.campo-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-family: var(--fuente);
+    color: var(--negro);
+    background: var(--gris-bg);
+    border: 1.5px solid var(--gris-borde);
+    border-radius: var(--radio);
+    transition: border-color var(--transicion), box-shadow var(--transicion);
+    outline: none;
+}
+
+.campo-select:focus,
+.campo-input:focus {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, .12);
+    background: var(--blanco);
+}
+
+.autocomplete-wrapper {
+    position: relative;
+}
+
+.sugerencias-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: var(--blanco);
+    border: 1.5px solid var(--azul);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra-md);
+    z-index: 50;
+    overflow: hidden;
+}
+
+.sug-item {
+    padding: 11px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--negro);
+    transition: background var(--transicion);
+}
+
+.sug-item:hover,
+.sug-item.activo {
+    background: var(--azul-claro);
+    color: var(--azul);
+}
+
+.sug-item mark {
+    background: transparent;
+    color: var(--azul);
+    font-weight: 700;
+}
+
+.buscador-acciones {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-buscar {
+    flex: 1;
+    min-width: 140px;
+}
+
+.btn-comparar {
+    flex: 2;
+    min-width: 200px;
+}
+
+.btn-limpiar {
+    flex: 0;
+    padding: 12px 16px;
+}
+
+.resultado-box {
+    margin-top: 28px;
+    background: var(--azul-claro);
+    border: 1.5px solid #90c1ff;
+    border-radius: var(--radio);
+    padding: 24px;
+    animation: aparecer .3s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
     }
-
-    document.addEventListener("click", e => {
-      if (!e.target.closest(".autocomplete-wrapper")) {
-        document.getElementById("sugerencias").style.display = "none";
-      }
-    });
-
-    /* ──────────── BUSCAR EN PUEBLO ──────────── */
-    function buscarMedicamento() {
-      const pueblo  = document.getElementById("pueblo").value;
-      const medName = document.getElementById("medicamento").value.trim();
-      const medLow  = medName.toLowerCase();
-
-      ocultarResultados();
-
-      if (!pueblo || !medName) {
-        mostrarAlerta("Por favor selecciona una comunidad e ingresa un medicamento.");
-        return;
-      }
-
-      const entry = baseDatos.find(f => f.pueblo === pueblo);
-      if (!entry) return;
-
-      const med = entry.medicamentos.find(m => m.nombre.toLowerCase() === medLow);
-
-      if (med) {
-        document.getElementById("res-nombre").textContent   = med.nombre;
-        document.getElementById("res-farmacia").textContent = entry.farmacia;
-        document.getElementById("res-precio").textContent   = "$" + med.precio.toLocaleString("es-DO");
-        document.getElementById("res-pueblo").textContent   = entry.pueblo;
-        mostrar("resultado-principal");
-      } else {
-        mostrar("resultado-vacio");
-      }
+    to {
+        opacity: 1;
+        transform: none;
     }
+}
 
-    /* ──────────── COMPARAR EN TODOS ──────────── */
-    function compararPrecios() {
-      const medName = document.getElementById("medicamento").value.trim();
-      const medLow  = medName.toLowerCase();
+.resultado-titulo {
+    font-family: var(--fuente-titulo);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--azul);
+    margin-bottom: 16px;
+}
 
-      ocultarResultados();
+.resultado-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+}
 
-      if (!medName) {
-        mostrarAlerta("Ingresa el nombre de un medicamento para comparar.");
-        return;
-      }
+.resultado-item {
+    background: var(--blanco);
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1px solid var(--gris-borde);
+}
 
-      const filas = [];
-      baseDatos.forEach(f => {
-        const med = f.medicamentos.find(m => m.nombre.toLowerCase() === medLow);
-        if (med) filas.push({ pueblo: f.pueblo, farmacia: f.farmacia, precio: med.precio, nombre: med.nombre });
-      });
+.ri-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--gris-texto);
+    margin-bottom: 4px;
+}
 
-      if (!filas.length) {
-        mostrar("resultado-vacio");
-        return;
-      }
+.ri-valor {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--negro);
+}
 
-      filas.sort((a, b) => a.precio - b.precio);
-      const minPrecio = filas[0].precio;
+.ri-precio {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--verde);
+}
 
-      document.getElementById("tabla-med-nombre").textContent = filas[0].nombre;
-      const tbody = document.getElementById("tabla-body");
-      tbody.innerHTML = "";
+.resultado-vacio {
+    margin-top: 28px;
+    background: #fff8f0;
+    border: 1.5px solid #ffd9a8;
+    border-radius: var(--radio);
+    padding: 32px 24px;
+    text-align: center;
+    animation: aparecer .3s ease;
+}
 
-      filas.forEach((f, i) => {
-        const tr = document.createElement("tr");
-        const esMasBarato = f.precio === minPrecio;
-        if (esMasBarato) tr.classList.add("fila-mejor");
-        tr.innerHTML = `
-          <td>${f.pueblo}</td>
-          <td>${f.farmacia}</td>
-          <td class="td-precio${esMasBarato ? " precio-mejor" : ""}">$${f.precio.toLocaleString("es-DO")}</td>
-          <td>${esMasBarato ? '<span class="badge-mejor">Mejor precio ✔</span>' : (i === filas.length - 1 ? '<span class="badge-alto">Más caro</span>' : '<span class="badge-normal">Disponible</span>')}</td>
-        `;
-        tbody.appendChild(tr);
-      });
+.rv-icono {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
 
-      mostrar("tabla-comparacion");
+.rv-texto {
+    font-size: 15px;
+    color: #7c4d00;
+}
+
+.tabla-comparacion {
+    margin-top: 28px;
+    animation: aparecer .3s ease;
+}
+
+.tabla-titulo {
+    font-family: var(--fuente-titulo);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--negro);
+    margin-bottom: 14px;
+}
+
+.tabla-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radio);
+    border: 1px solid var(--gris-borde);
+}
+
+.tabla-precios {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.tabla-precios th {
+    background: var(--azul);
+    color: #fff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.tabla-precios td {
+    padding: 11px 16px;
+    border-top: 1px solid var(--gris-borde);
+    color: var(--negro);
+    background: var(--blanco);
+}
+
+.tabla-precios tr.fila-mejor td {
+    background: #f0faf0;
+}
+
+.tabla-precios tr:hover td {
+    background: var(--gris-bg);
+}
+
+.td-precio {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.precio-mejor {
+    color: var(--verde);
+}
+
+.badge-mejor {
+    background: #d4edda;
+    color: #1a6c2e;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.badge-alto {
+    background: #fdecea;
+    color: #b71c1c;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.badge-normal {
+    background: #e3f0ff;
+    color: #1565c0;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.tabla-nota {
+    font-size: 13px;
+    color: var(--gris-texto);
+    margin-top: 10px;
+}
+
+.mvv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.mvv-card {
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: var(--radio);
+    padding: 32px 28px;
+    transition: transform var(--transicion), background var(--transicion);
+}
+
+.mvv-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, .11);
+}
+
+.mvv-icono {
+    font-size: 32px;
+    margin-bottom: 14px;
+}
+
+.mvv-card h3 {
+    font-family: var(--fuente-titulo);
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.mvv-card p {
+    font-size: 15px;
+    color: #b3cee8;
+    line-height: 1.65;
+}
+
+.valores-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.valores-lista li {
+    font-size: 14px;
+    color: #b3cee8;
+}
+
+.valores-lista li strong {
+    color: #fff;
+}
+
+.contacto-card {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contacto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 18px;
+    padding: 40px;
+    box-shadow: var(--sombra-md);
+}
+
+.campo-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-family: var(--fuente);
+    color: var(--negro);
+    background: var(--gris-bg);
+    border: 1.5px solid var(--gris-borde);
+    border-radius: var(--radio);
+    resize: vertical;
+    outline: none;
+    transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.campo-textarea:focus {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, .12);
+    background: var(--blanco);
+}
+
+.contacto-ok {
+    background: var(--verde-claro);
+    color: var(--verde);
+    font-weight: 600;
+    padding: 12px 16px;
+    border-radius: var(--radio);
+    font-size: 15px;
+    border: 1px solid #a5d6a7;
+    animation: aparecer .3s ease;
+}
+
+.alerta-temporal {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
+    animation: slideUp .3s ease;
+    white-space: nowrap;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
     }
-
-    /* ──────────── CONTACTO ──────────── */
-    function enviarContacto() {
-      const nombre  = document.getElementById("c-nombre").value.trim();
-      const correo  = document.getElementById("c-correo").value.trim();
-      const mensaje = document.getElementById("c-mensaje").value.trim();
-      if (!nombre || !correo || !mensaje) {
-        mostrarAlerta("Por favor completa todos los campos del formulario.");
-        return;
-      }
-      document.getElementById("c-nombre").value  = "";
-      document.getElementById("c-correo").value  = "";
-      document.getElementById("c-mensaje").value = "";
-      mostrar("contacto-ok");
-      setTimeout(() => { document.getElementById("contacto-ok").style.display = "none"; }, 4000);
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
     }
+}
 
-    /* ──────────── HELPERS ──────────── */
-    function vaciarCampos() {
-      document.getElementById("pueblo").value      = "";
-      document.getElementById("medicamento").value = "";
-      document.getElementById("sugerencias").style.display = "none";
-      ocultarResultados();
+.footer {
+    background: #0a1f44;
+    color: rgba(255, 255, 255, .7);
+    padding: 48px 24px;
+    text-align: center;
+}
+
+.footer-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer .nav-logo {
+    justify-content: center;
+    color: #90caf9;
+    margin-bottom: 12px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--fuente-titulo);
+    font-size: 22px;
+    color: #90caf9;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.footer-desc {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.footer-autores {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.footer-copy {
+    font-size: 12px;
+    opacity: .5;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-bottom: 1px solid var(--gris-borde);
+        padding: 8px 0;
+        box-shadow: var(--sombra-md);
+        z-index: 99;
     }
-
-    function ocultarResultados() {
-      ["resultado-principal","resultado-vacio","tabla-comparacion"].forEach(id => {
-        document.getElementById(id).style.display = "none";
-      });
+    .nav-links.open {
+        display: flex;
     }
-
-    function mostrar(id) {
-      const el = document.getElementById(id);
-      el.style.display = "block";
-      el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    .nav-links a {
+        padding: 12px 24px;
+        border-radius: 0;
     }
-
-    function mostrarAlerta(msg) {
-      const div = document.createElement("div");
-      div.className = "alerta-temporal";
-      div.textContent = msg;
-      document.body.appendChild(div);
-      setTimeout(() => div.remove(), 3000);
+    .hamburger {
+        display: block;
     }
-
-    function toggleMenu() {
-      document.querySelector(".nav-links").classList.toggle("open");
+    .nav-cta {
+        display: none;
     }
+    .navbar-inner {
+        position: relative;
+    }
+    .hero {
+        padding: 48px 20px;
+        gap: 32px;
+        text-align: center;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .hero-visual {
+        max-width: 100%;
+    }
+    .hero-pill-grid {
+        justify-content: center;
+    }
+    .stat-item {
+        padding: 20px 24px;
+    }
+    .stat-divider {
+        display: none;
+    }
+    .stats-bar {
+        gap: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .buscador-card {
+        padding: 24px 20px;
+    }
+    .btn-buscar,
+    .btn-comparar,
+    .btn-limpiar {
+        flex: 1 1 100%;
+    }
+    .contacto-form {
+        padding: 24px 20px;
+    }
+    .mvv-card {
+        padding: 24px 20px;
+    }
+    .seccion {
+        padding: 56px 20px;
+    }
+}
 
-    /* Cerrar menú al hacer click en un enlace */
-    document.querySelectorAll(".nav-links a").forEach(a => {
-      a.addEventListener("click", () => {
-        document.querySelector(".nav-links").classList.remove("open");
-      });
-    });
-  </script>
-
-</body>
-</html>
+@media (max-width: 480px) {
+    .resultado-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .buscador-acciones {
+        flex-direction: column;
+    }
+}
